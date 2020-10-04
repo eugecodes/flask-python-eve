@@ -1,0 +1,132 @@
+from eve import Eve
+from eve_sqlalchemy import SQL
+from eve_sqlalchemy.decorators import registerSchema
+from eve_sqlalchemy.validation import ValidatorSQL
+from trade_models import db, Sources, Base, CommonColumns, MarketResearchLibraryResults, Countries, Industries, ItaIndustries, ConsolidatedScreenListAddresses, ConsolidatedScreenListResults, TradeEventsResults, TradeEventVenues, TradeEventContacts, TradeEventAggregations, TradeLeadResults, TradeLeadCategories, TradeLeadAggregations, TrafficRateResults, TrafficRatesAnnualRate, TrafficAltAnnualRate, TradeItaFaqs, TradeItaFaqsTopic, TradeItaOfficeLocations, TradeItaOfficeLocationsAddress, TradeItaTradeArticles, TradeItaTradeArticlesAgencies, TradeItaTradeArticlesSourcesBusinessUnits, TradeItaTradeArticlesSourceOffices, TradeItaTradeArticlesExportPhases, TradeItaArticlesTopics, TradeItaArticlesSubTopics, TradeItaArticlesGeoRegions, TradeItaArticlesGeoSubRegions, TradeItaArticlesTradeRegions, TradeItaArticlesTradePrograms, TradeItaArticlesTradeInitiatives, TradeItaArticlesFileUrl, TradeItaArticlesImageUrl, TradeItaArticlesUrlHtmlSource, TradeItaArticlesUrlXmlSource, TradeBusinessServiceProviders, TradeTaxonomiesResults,TradeTaxonomyTaxonomies,TradeTaxonomyBroaderTerms,TradeTaxonomyNarrowTerms, TradeMinimisResults, TradeItaZipcodeToPost, TradeZipcodeAddress, MarketResearchLibraryIndustries, MarketResearchLibraryItaIndustries, MarketResearchLibraryCountries, TradeEventAggregationsCountries, TradeEventIndustries, TradeLeadAggregationsCountries, TradeLeadIndustries, TradeItaFaqsCountries, TradeItaFaqsIndustries, ItaTradeArticlesIndustries, ItaTradeArticlesCountries, MarketResearchLibraryAddress
+
+registerSchema('sources')(Sources)
+registerSchema('market_research_library_industries')(MarketResearchLibraryIndustries)
+registerSchema('market_research_library_ita_industries')(MarketResearchLibraryItaIndustries)
+registerSchema('market_research_library_address')(MarketResearchLibraryAddress)
+registerSchema('market_research_library_countries')(MarketResearchLibraryCountries)
+registerSchema('market_research_library_results')(MarketResearchLibraryResults)
+registerSchema('consolidated_screen_list_address')(ConsolidatedScreenListAddresses)
+registerSchema('consolidated_screen_list_results')(ConsolidatedScreenListResults)
+registerSchema('trade_event_results')(TradeEventsResults)
+registerSchema('trade_event_venues')(TradeEventVenues)
+registerSchema('trade_event_contacts')(TradeEventContacts)
+registerSchema('trade_event_aggregations')(TradeEventAggregations)
+registerSchema('trade_event_aggregations_countries')(TradeEventAggregationsCountries)
+registerSchema('trade_event_industries')(TradeEventIndustries)
+registerSchema('trade_lead_results')(TradeLeadResults)
+registerSchema('trade_lead_categories')(TradeLeadCategories)
+registerSchema('trade_lead_aggregations')(TradeLeadAggregations)
+registerSchema('trade_lead_industries')(TradeLeadIndustries)
+registerSchema('trade_lead_aggregations_countries')(TradeLeadAggregationsCountries)
+registerSchema('traffic_rate_results')(TrafficRateResults)
+registerSchema('traffic_annual_rate')(TrafficRatesAnnualRate)
+registerSchema('traffic_alt_annual_rate')(TrafficAltAnnualRate)
+registerSchema('trade_ita_faqs')(TradeItaFaqs)
+registerSchema('trade_ita_faq_industries')(TradeItaFaqsIndustries)
+registerSchema('trade_ita_faq_countries')(TradeItaFaqsCountries)
+registerSchema('trade_ita_zipcode_to_post')(TradeItaZipcodeToPost)
+registerSchema('trade_ita_zipcode_address')(TradeZipcodeAddress)
+registerSchema('trade_ita_zipcode_topic')(TradeItaFaqsTopic)
+registerSchema('trade_ita_office_locations')(TradeItaOfficeLocations)
+registerSchema('trade_ita_office_locations_address')(TradeItaOfficeLocationsAddress)
+registerSchema('trade_ita_articles')(TradeItaTradeArticles)
+registerSchema('trade_ita_articles_agencies')(TradeItaTradeArticlesAgencies)
+registerSchema('trade_ita_articles_industries')(ItaTradeArticlesIndustries)
+registerSchema('trade_ita_articles_countries')(ItaTradeArticlesCountries)
+registerSchema('trade_ita_articles_source_bi_units')(TradeItaTradeArticlesSourcesBusinessUnits)
+registerSchema('trade_ita_articles_source_offices')(TradeItaTradeArticlesSourceOffices)
+registerSchema('trade_ita_articles_export_phases')(TradeItaTradeArticlesExportPhases)
+registerSchema('trade_ita_articles_topics')(TradeItaArticlesTopics)
+registerSchema('trade_ita_articles_subtopics')(TradeItaArticlesSubTopics)
+registerSchema('trade_ita_articles_georegions')(TradeItaArticlesGeoRegions)
+registerSchema('trade_ita_articles_geosubregions')(TradeItaArticlesGeoSubRegions)
+registerSchema('trade_ita_articles_regions')(TradeItaArticlesTradeRegions)
+registerSchema('trade_ita_articles_programs')(TradeItaArticlesTradePrograms)
+registerSchema('trade_ita_articles_init')(TradeItaArticlesTradeInitiatives)
+registerSchema('trade_ita_articles_file_url')(TradeItaArticlesFileUrl)
+registerSchema('trade_ita_articles_img_url')(TradeItaArticlesImageUrl)
+registerSchema('trade_ita_articles_url_html_source')(TradeItaArticlesUrlHtmlSource)
+registerSchema('trade_ita_articles_url_xml_source')(TradeItaArticlesUrlXmlSource)
+registerSchema('trade_bi_service_providers')(TradeBusinessServiceProviders)
+registerSchema('trade_tax_results')(TradeTaxonomiesResults)
+registerSchema('trade_tax_taxonomies')(TradeTaxonomyTaxonomies)
+registerSchema('trade_tax_broader_terms')(TradeTaxonomyBroaderTerms)
+registerSchema('trade_tax_narrow_terms')(TradeTaxonomyNarrowTerms)
+registerSchema('trade_minimis_results')(TradeMinimisResults)
+
+SETTINGS = {
+    'SQLALCHEMY_DATABASE_URI': ('postgresql+psycopg2://argentina:mountains@twisted-dragon.cu3ugwf8wzsx.us-west-2.rds.amazonaws.com:5432/twisted'),
+    'RESOURCE_METHODS': ['GET', 'POST'],
+    'ITEM_METHODS': ['GET'],
+    'DOMAIN': {
+        'sources': Sources._eve_schema['sources'],
+		'market_research_library_industries': MarketResearchLibraryIndustries._eve_schema['market_research_library_industries'],
+		'market_research_library_ita_industries': MarketResearchLibraryItaIndustries._eve_schema['market_research_library_ita_industries'],
+		'market_research_library_address': MarketResearchLibraryAddress._eve_schema['market_research_library_address'],
+		'market_research_library_countries': MarketResearchLibraryCountries._eve_schema['market_research_library_countries'],
+		'market_research_library_results': MarketResearchLibraryResults._eve_schema['market_research_library_results'],
+		'consolidated_screen_list_address': ConsolidatedScreenListAddresses._eve_schema['consolidated_screen_list_address'],
+		'consolidated_screen_list_results': ConsolidatedScreenListResults._eve_schema['consolidated_screen_list_results'],
+		'trade_event_results': TradeEventsResults._eve_schema['trade_event_results'],
+		'trade_event_venues': TradeEventVenues._eve_schema['trade_event_venues'],
+		'trade_event_contacts': TradeEventContacts._eve_schema['trade_event_contacts'],
+		'trade_event_aggregations': TradeEventAggregations._eve_schema['trade_event_aggregations'],
+		'trade_event_aggregations_countries': TradeEventAggregationsCountries._eve_schema['trade_event_aggregations_countries'],
+		'trade_event_industries': TradeEventIndustries._eve_schema['trade_event_industries'],
+		'trade_lead_results': TradeLeadResults._eve_schema['trade_lead_results'],
+		'trade_lead_categories': TradeLeadCategories._eve_schema['trade_lead_categories'],
+		'trade_lead_aggregations': TradeLeadAggregations._eve_schema['trade_lead_aggregations'],
+		'trade_lead_industries': TradeLeadIndustries._eve_schema['trade_lead_industries'],
+		'trade_lead_aggregations_countries': TradeLeadAggregationsCountries._eve_schema['trade_lead_aggregations_countries'],
+		'traffic_rate_results': TrafficRateResults._eve_schema['traffic_rate_results'],
+		'traffic_annual_rate': TrafficRatesAnnualRate._eve_schema['traffic_annual_rate'],
+		'traffic_alt_annual_rate': TrafficAltAnnualRate._eve_schema['traffic_alt_annual_rate'],
+		'trade_ita_faqs': TradeItaFaqs._eve_schema['trade_ita_faqs'],
+		'trade_ita_faq_industries': TradeItaFaqsIndustries._eve_schema['trade_ita_faq_industries'],
+		'trade_ita_faq_countries': TradeItaFaqsCountries._eve_schema['trade_ita_faq_countries'],
+		'trade_ita_zipcode_to_post': TradeItaZipcodeToPost._eve_schema['trade_ita_zipcode_to_post'],
+		'trade_ita_zipcode_address': TradeZipcodeAddress._eve_schema['trade_ita_zipcode_address'],
+		'trade_ita_zipcode_topic': TradeItaFaqsTopic._eve_schema['trade_ita_zipcode_topic'],
+		'trade_ita_office_locations': TradeItaOfficeLocations._eve_schema['trade_ita_office_locations'],
+		'trade_ita_office_locations_address': TradeItaOfficeLocationsAddress._eve_schema['trade_ita_office_locations_address'],
+		'trade_ita_articles': TradeItaTradeArticles._eve_schema['trade_ita_articles'],
+		'trade_ita_articles_agencies': TradeItaTradeArticlesAgencies._eve_schema['trade_ita_articles_agencies'],
+		'trade_ita_articles_industries': ItaTradeArticlesIndustries._eve_schema['trade_ita_articles_industries'],
+		'trade_ita_articles_countries': ItaTradeArticlesCountries._eve_schema['trade_ita_articles_countries'],
+		'trade_ita_articles_source_bi_units': TradeItaTradeArticlesSourcesBusinessUnits._eve_schema['trade_ita_articles_source_bi_units'],
+		'trade_ita_articles_source_offices': TradeItaTradeArticlesSourceOffices._eve_schema['trade_ita_articles_source_offices'],
+		'trade_ita_articles_export_phases': TradeItaTradeArticlesExportPhases._eve_schema['trade_ita_articles_export_phases'],
+		'trade_ita_articles_topics': TradeItaArticlesTopics._eve_schema['trade_ita_articles_topics'],
+		'trade_ita_articles_subtopics': TradeItaArticlesSubTopics._eve_schema['trade_ita_articles_subtopics'],
+		'trade_ita_articles_georegions': TradeItaArticlesGeoRegions._eve_schema['trade_ita_articles_georegions'],
+		'trade_ita_articles_geosubregions': TradeItaArticlesGeoSubRegions._eve_schema['trade_ita_articles_geosubregions'],
+		'trade_ita_articles_regions': TradeItaArticlesTradeRegions._eve_schema['trade_ita_articles_regions'],
+		'trade_ita_articles_programs': TradeItaArticlesTradePrograms._eve_schema['trade_ita_articles_programs'],
+		'trade_ita_articles_init': TradeItaArticlesTradeInitiatives._eve_schema['trade_ita_articles_init'],
+		'trade_ita_articles_file_url': TradeItaArticlesFileUrl._eve_schema['trade_ita_articles_file_url'],
+		'trade_ita_articles_img_url': TradeItaArticlesImageUrl._eve_schema['trade_ita_articles_img_url'],
+		'trade_ita_articles_url_html_source': TradeItaArticlesUrlHtmlSource._eve_schema['trade_ita_articles_url_html_source'],
+		'trade_ita_articles_url_xml_source': TradeItaArticlesUrlXmlSource._eve_schema['trade_ita_articles_url_xml_source'],
+		'trade_bi_service_providers': TradeBusinessServiceProviders._eve_schema['trade_bi_service_providers'],
+		'trade_tax_results': TradeTaxonomiesResults._eve_schema['trade_tax_results'],
+		'trade_tax_taxonomies': TradeTaxonomyTaxonomies._eve_schema['trade_tax_taxonomies'],
+		'trade_tax_broader_terms': TradeTaxonomyBroaderTerms._eve_schema['trade_tax_broader_terms'],
+		'trade_tax_narrow_terms': TradeTaxonomyNarrowTerms._eve_schema['trade_tax_narrow_terms'],
+		'trade_minimis_results': TradeMinimisResults._eve_schema['trade_minimis_results'],
+    },
+}
+
+app = Eve(validator=ValidatorSQL, settings=SETTINGS, data=SQL)
+
+# bind SQLAlchemy
+db = app.data.driver
+Base.metadata.bind = db.engine
+db.Model = Base
+db.create_all()
+
+app.run(debug=True, use_reloader=False) 
